@@ -1,0 +1,19 @@
+(library
+ (name            libfixmath)
+ (public_name     libfixmath)
+ (libraries       bigstring)
+ (c_names         libfixmath_stubs
+                  fix16
+                  fix16_exp
+                  fix16_sqrt
+                  fix16_str
+                  fix16_trig
+                  fract32
+                  uint32)
+  ; (c_flags         (:include c_flags.sexp)
+)
+
+; sets flags for 32/64 bits architectures
+;(rule
+ ; (targets c_flags.sexp)
+ ; (action  (run %{exe:config/discover.exe} -ocamlc %{ocamlc})))

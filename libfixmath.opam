@@ -1,0 +1,18 @@
+opam-version: "0.1"
+name: "libfixmath"
+authors: [ "Sophia Gold <sophiagoldnyc@gmail.com>" ]
+maintainer: "Sophia Gold <sophiagoldnyc@gmail.com>"
+synopsis: "OCaml bindings for libfixmath"
+homepage: "https://github.com/sophia-gold/ocaml-libfixmath"
+bug-reports: "https://github.com/sophia-gold/ocaml-libfixmath/issues"
+dev-repo: "https://github.com/sophia-gold/ocaml-libfixmath.git"
+license: "MIT"
+depends: [
+  "dune" {build & >= "1.7"}
+  "alcotest" {with-test & >= "0.8.1"}
+  "bigstring" {>= "0.1.1"}
+]
+build: [
+  ["dune" "build" "-j" jobs "-p" name "@install"]
+  ["dune" "runtest" "-p" name "-j" jobs] {with-test}
+]

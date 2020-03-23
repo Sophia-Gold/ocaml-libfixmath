@@ -1,0 +1,11 @@
+(executable
+ (name test)
+ (libraries libfixmath alcotest compiler-libs.common))
+
+(alias
+ (name    runtest-libfixmath)
+ (action  (run %{exe:test.exe})))
+
+(alias
+ (name    runtest)
+ (deps    (alias runtest-libfixmath)))

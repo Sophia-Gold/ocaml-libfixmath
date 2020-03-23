@@ -1,0 +1,6 @@
+_build
+**/dune-project
+**/*.install
+**/.merlin
+**/*~
+**/*#*
