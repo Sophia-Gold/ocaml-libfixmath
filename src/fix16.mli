@@ -39,9 +39,9 @@ val from_float : float -> t
 
 val to_float : t -> float
 
-val from_string : Bigstring.t -> t
+val from_bigstring : Bigstring.t -> t
 
-val to_string : t -> Bigstring.t -> int -> unit
+val to_bigstring : t -> Bigstring.t -> int -> unit
 
 
 val add : t -> t -> t
@@ -65,7 +65,9 @@ val pow : t -> t -> t
 
 val from_float_checked : float -> t option
 
-val from_string_checked : Bigstring.t -> t option
+val from_string_checked : string -> t option
+
+val to_string : t -> string
 
 val add_checked : t -> t -> t option
 
@@ -74,3 +76,5 @@ val sub_checked : t -> t -> t option
 val mul_checked : t -> t -> t option
 
 val div_checked : t -> t -> t option
+
+val pow_checked : t -> t -> t option

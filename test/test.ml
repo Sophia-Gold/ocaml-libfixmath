@@ -293,42 +293,42 @@ let ln () =
 let buf = Bigstring.create 13
 
 let str0 () =
-  Fix16.to_string (Fix16.from_float 1234.5678) buf 4 ;
+  Fix16.to_bigstring (Fix16.from_float 1234.5678) buf 4 ;
   Alcotest.(check string)
     "same string"
     "1234.5678"
     (Bigstring.sub_string buf 0 9)
 
 let str1 () =
-  Fix16.to_string (Fix16.from_float (-1234.5678)) buf 4 ;
+  Fix16.to_bigstring (Fix16.from_float (-1234.5678)) buf 4 ;
   Alcotest.(check string)
     "same string"
     "-1234.5678"
     (Bigstring.sub_string buf 0 10)
 
 let str2 () =
-  Fix16.to_string (Fix16.from_int 0) buf 0 ;
+  Fix16.to_bigstring (Fix16.from_int 0) buf 0 ;
   Alcotest.(check string)
     "same string"
     "0"
     (Bigstring.sub_string buf 0 1)
 
 let str3 () =
-  Fix16.to_string (Fix16.from_float 0.9) buf 0 ;
+  Fix16.to_bigstring (Fix16.from_float 0.9) buf 0 ;
   Alcotest.(check string)
     "same string"
     "1"
     (Bigstring.sub_string buf 0 1)
 
 let str4 () =
-  Fix16.to_string Fix16.max buf 5 ;
+  Fix16.to_bigstring Fix16.max buf 5 ;
   Alcotest.(check string)
     "same string"
     "32767.99998"
     (Bigstring.sub_string buf 0 11)
 
 let str5 () =
-  Fix16.to_string Fix16.min buf 5 ;
+  Fix16.to_bigstring Fix16.min buf 5 ;
   Alcotest.(check string)
     "same string"
     "-32768.00000"
@@ -374,4 +374,3 @@ let () =
   Alcotest.run "libfixmath" [
       "tests", tests;
     ]
-

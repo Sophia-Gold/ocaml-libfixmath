@@ -49,10 +49,10 @@ external from_float : float -> t =
 external to_float : t -> float =
   "ml_fix16_to_dbl" "ml_fix16_to_dbl_native" [@@noalloc] [@@unboxed]
 
-external from_string : Bigstring.t -> t =
+external from_bigstring : Bigstring.t -> t =
   "ml_fix16_from_str" [@@noalloc]
 
-external to_string : t -> Bigstring.t -> int -> unit =
+external to_bigstring : t -> Bigstring.t -> int -> unit =
   "ml_fix16_to_str" [@@noalloc]
 
 
@@ -89,10 +89,15 @@ let from_float_checked a =
   else Some (from_float a)
 
 let from_string_checked a =
-  let f = from_string a in
+  let f = from_bigstring (Bigstring.of_string a) in
   if (to_float f) <= (to_float min)
   then None
   else Some f
+
+let to_string a =
+  let buf = Bigstring.create 13 in
+  to_bigstring a buf 13 ;
+  Bigstring.to_string buf
 
 let add_checked a b =
   let result = add a b in
@@ -114,6 +119,12 @@ let mul_checked a b =
 
 let div_checked a b =
   let result = div a b in
+  if (to_float result) <= (to_float min)
+  then None
+  else Some result
+
+let pow_checked a b =
+  let result = pow a b in
   if (to_float result) <= (to_float min)
   then None
   else Some result
